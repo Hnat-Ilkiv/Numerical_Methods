@@ -15,6 +15,17 @@ def print_matrix(matrix):
     for row in matrix:
         print(" ".join(map(lambda x: f" {x:.2f}" if x >= 0 else f"{x:.2f}", row)))
 
+def matrix_multiply(matrix1, matrix2):
+    result = []
+    for i in range(len(matrix1)):
+        row = []
+        for j in range(len(matrix2[0])):
+            element = sum(matrix1[i][k] * matrix2[k][j] for k in range(len(matrix2)))
+            row.append(element)
+        result.append(row)
+    return result
+
+
 def inverse_matrix_gaussian(matrix):
     n = len(matrix)
     # Створюємо розширену матрицю, що містить одиничну матрицю
@@ -80,6 +91,16 @@ if __name__ == "__main__":
     print_matrix(matrix_for_task)
     print("\nОбернена матриця №1:")
     print_matrix(inverse_matrix1)
-    print("\nОбернена матриця №2:")
+    print("\nОбернена матриця №1 (з вибором):")
     print_matrix(inverse_matrix2)
-    print(f"\nОбернена матриця №1 == Обернена матриця №2 >> {inverse_matrix1 == inverse_matrix2}")
+    print(f"\nОбернена матриця №1 == Обернена матриця №1 (з вибором) >> {inverse_matrix1 == inverse_matrix2}")
+
+    # Перевірка результату
+    multiply1 = matrix_multiply(matrix_for_task, inverse_matrix1)
+    multiply2 = matrix_multiply(matrix_for_task, inverse_matrix2)
+
+    # Вивід результатів перевірки
+    print("\nПеревірка обпрненої матриці №1:")
+    print_matrix(multiply1)
+    print("\nПеревірка оберненої матриці №1 (з вибором):")
+    print_matrix(multiply2)
