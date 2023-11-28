@@ -6,7 +6,7 @@ def f(x):
 def df(x):
     return 1 + math.exp(x)
 
-def combined_method(initial_guess, final_guess, tol, max_iter):
+def combined_method(f, df, initial_guess, final_guess, tol, max_iter):
     if f(initial_guess) * f(final_guess) > 0:
         print("Не вдалося гарантувати наявність кореня в заданому інтервалі.")
 
@@ -38,7 +38,7 @@ if __name__ == "__main__":
     max_iterations = 1000
 
     # Виклик Комбінований метод хорд та дотичних
-    root, iterations = combined_method(initial_guess, final_guess, tolerance, max_iterations)
+    root, iterations = combined_method(f, df, initial_guess, final_guess, tolerance, max_iterations)
 
     if root is not None:
         # Перевірка значення функції в знайденій точці

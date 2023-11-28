@@ -2,12 +2,7 @@ import math
 
 
 def f(x):
-    """Визначення функції"""
     return math.exp(x) + x
-
-def df(x):
-    """Визначення похідної функції"""
-    return 1 + math.exp(x)
 
 def secant_method(f, initial_guess, final_guess, tol, max_iter):
     if f(initial_guess) * f(final_guess) > 0:
